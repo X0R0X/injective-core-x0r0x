@@ -194,3 +194,5 @@ replace github.com/cosmos/ibc-go/v4 => github.com/InjectiveLabs/ibc-go/v4 v4.2.0
 replace github.com/CosmWasm/wasmd => github.com/InjectiveLabs/wasmd v0.30.0-inj-1
 
 replace github.com/confio/ics23/go => github.com/cosmos/cosmos-sdk/ics23/go v0.8.0
+
+replace github.com/tendermint/tendermint => ../tendermint
