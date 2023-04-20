@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -25,6 +26,8 @@ import (
 	dbm "github.com/tendermint/tm-db"
 
 	"github.com/CosmWasm/wasmd/x/wasm"
+	"github.com/InjectiveLabs/injective-core/cmd/injectived/config"
+	"github.com/InjectiveLabs/metrics"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/crypto/keyring"
@@ -35,10 +38,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/server/types"
 	storetypes "github.com/cosmos/cosmos-sdk/store/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-
-	"github.com/InjectiveLabs/metrics"
-
-	"github.com/InjectiveLabs/injective-core/cmd/injectived/config"
 )
 
 // Tendermint full-node start flags
@@ -83,6 +82,16 @@ const (
 // StartCmd runs the service passed in, either stand-alone or in-process with
 // Tendermint.
 func StartCmd(appCreator types.AppCreator, defaultNodeHome string) *cobra.Command {
+	fmt.Println()
+	fmt.Println()
+	fmt.Println()
+	fmt.Println("-================================-")
+	fmt.Println("-=< x0r0x >=- MemPoolBoostVersion")
+	fmt.Println("-================================-")
+	fmt.Println()
+	fmt.Println()
+	fmt.Println()
+
 	cmd := &cobra.Command{
 		Use:   "start",
 		Short: "Run the full node",
@@ -226,6 +235,7 @@ func startInProcess(ctx *server.Context, clientCtx client.Context, appCreator ty
 	}
 
 	genDocProvider := node.DefaultGenesisDocProviderFunc(cfg)
+
 	tmNode, err := node.NewNode(
 		cfg,
 		pvm.LoadOrGenFilePV(cfg.PrivValidatorKeyFile(), cfg.PrivValidatorStateFile()),
